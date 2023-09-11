@@ -5,7 +5,7 @@ import { easePolyOut } from "d3-ease";
 import Otamendi from "../../../resources/images/players/Otamendi.png";
 import Raheem_Sterling from "../../../resources/images/players/Raheem_Sterling.png";
 import Vincent_Kompany from "../../../resources/images/players/Vincent_Kompany.png";
-import PlayerCard  from "../../ultils/PlayerCard"
+import PlayerCard from "../../ultils/PlayerCard";
 
 let Cards = [
 	{
@@ -31,7 +31,7 @@ let Cards = [
 ];
 
 const HomeCards = () => {
-	const showAnimateCards = () => (
+	const showAnimateCards = () =>
 		Cards.map((card, i) => (
 			//console.log(card)
 			<Animate
@@ -44,12 +44,13 @@ const HomeCards = () => {
 					timing: { duration: 500, easePolyOut },
 				}}
 			>
-        {({left, bottom}) => (
-          <div style={{position: 'absolute', left, bottom}}><PlayerCard/></div>
-        )}
-      </Animate>
-		))
-  );
+				{({ left, bottom }) => (
+					<div style={{ position: "absolute", left, bottom }}>
+						<PlayerCard number="30" name="Nicolas" lastname="Otamendi" />
+					</div>
+				)}
+			</Animate>
+		));
 	return <div>{showAnimateCards()}</div>;
 };
 export default HomeCards;
