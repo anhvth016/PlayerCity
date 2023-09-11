@@ -41,12 +41,12 @@ const HomeCards = () => {
 				enter={{
 					left: [card.left],
 					bottom: [card.bottom],
-					timing: { duration: 500, easePolyOut },
+					timing: { delay: 1000, duration: 500, easePolyOut },
 				}}
 			>
 				{({ left, bottom }) => (
 					<div style={{ position: "absolute", left, bottom }}>
-						<PlayerCard number="30" name="Nicolas" lastname="Otamendi" />
+						<PlayerCard number="30" name="Nicolas" lastname="Otamendi" bck={card.player}/>
 					</div>
 				)}
 			</Animate>
