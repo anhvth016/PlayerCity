@@ -23,7 +23,7 @@ const AdminPlayers = () => {
 		if (!adminPlayers) {
 			setAdminLoading(true);
 			playersCollection
-				.limit(2)
+				.limit(5)
 				.get()
 				.then((snap) => {
 					const lastVisible = snap.docs[snap.docs.length - 1];
@@ -42,16 +42,13 @@ const AdminPlayers = () => {
 				});
 		}
 	}, [adminPlayers]);
-	console.log(adminPlayers);
-	console.log(lastVisible);
 
 	const loadMorePlayers = () => {
 		if (lastVisible) {
-			console.log(lastVisible);
 			setAdminLoading(true);
 			playersCollection
 				.startAfter(lastVisible)
-				.limit(2)
+				.limit(3)
 				.get()
 				.then((snap) => {
 					const lastVisible = snap.docs[snap.docs.length - 1];
@@ -105,7 +102,7 @@ const AdminPlayers = () => {
 											</Link>
 										</TableCell>
 										<TableCell>
-											<Link to={`/admin_players/edit_player/${player.id}`}>
+											<Link to={`/admin-players/edit-player/${player.id}`}>
 												{player.lastname}
 											</Link>
 										</TableCell>
