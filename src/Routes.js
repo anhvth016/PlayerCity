@@ -12,6 +12,7 @@ import SignIn from "./Components/signIn/SignIn";
 import Dashboard from "./Components/admin/dashboard/Dashboard";
 import AdminPlayers from "./Components/admin/adminPlayers/AdminPlayers";
 import AddPlayers from "./Components/admin/adminPlayers/addPlayers/AddPlayers";
+import EditPlayers from "./Components/admin/adminPlayers/editPlayers/EditPlayers";
 
 
 const Routes = ({user}) => {
@@ -24,7 +25,11 @@ const Routes = ({user}) => {
 				exact
 				component={AuthGuard(AddPlayers)}
 			/>
-			
+			<Route
+				path="/admin-players/edit-player/:playerid"
+				exact
+				component={AuthGuard(EditPlayers)}
+			/>
 			<Route path="/dashboard" exact component={AuthGuard(Dashboard)} />
 			<Route
 				path="/sign_in"
