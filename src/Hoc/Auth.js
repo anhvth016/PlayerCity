@@ -3,7 +3,6 @@ import firebase from "../firebase";
 import { Redirect } from "react-router-dom";
 
 const AuthGuard = (Component) => {
- // console.log(Component)
   class AuthHoc extends React.Component{
 
     authCheck = () => {
