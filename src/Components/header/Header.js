@@ -23,10 +23,10 @@ const Header = ({ user }) => {
 					</div>
 				</div>
 
-				<Link to="/the_team">
+				<Link to="/the-team">
 					<Button color="inherit">The team</Button>
 				</Link>
-				<Link to="/the_matches">
+				<Link to="/the-matches">
 					<Button color="inherit">Matches</Button>
 				</Link>
 

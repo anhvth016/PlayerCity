@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import {useFormik } from "formik";
+import { useFormik } from "formik";
 import * as Yup from "yup";
 import {
 	Button,
@@ -26,9 +26,7 @@ const defaultValues = {
 	position: "",
 };
 const EditPlayers = (props) => {
-	console.log(props)
-
-	const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(false);
 	const [values, setValues] = useState(defaultValues);
 	const formik = useFormik({
 		enableReinitialize: true,
@@ -48,35 +46,36 @@ const EditPlayers = (props) => {
 				.update(values)
 				.then(() => {
 					showSuccessToast("Player đã được update.");
-					 props.history.push("/admin-players");
+					props.history.push("/admin-players");
 				})
 				.catch((error) => {
 					showErrorToast(error);
-				}).finally(() => {
-					setLoading(false)
 				})
+				.finally(() => {
+					setLoading(false);
+				});
 		},
 	});
 
-	 useEffect(() => {
-			const getId = props.match.params.playerid;
-			if (getId) {
-				playersCollection
-					.doc(getId)
-					.get()
-					.then((snapshot) => {
-						if (snapshot.data()) {
-							setValues(snapshot.data());
-						} else {
-							showErrorToast("Sorry, nothing was found");
-						}
-					})
-					.catch((error) => {
-						showErrorToast(error);
-					});
-			} 
-		}, [props.match.params.playerid]);
-  return (
+	useEffect(() => {
+		const getId = props.match.params.playerid;
+		if (getId) {
+			playersCollection
+				.doc(getId)
+				.get()
+				.then((snapshot) => {
+					if (snapshot.data()) {
+						setValues(snapshot.data());
+					} else {
+						showErrorToast("Sorry, nothing was found");
+					}
+				})
+				.catch((error) => {
+					showErrorToast(error);
+				});
+		}
+	}, [props.match.params.playerid]);
+	return (
 		<AdminLayout title="Edit Players">
 			<div className="editplayers_dialog_wrapper">
 				<div>
@@ -153,5 +152,5 @@ const EditPlayers = (props) => {
 			</div>
 		</AdminLayout>
 	);
-}
+};
 export default EditPlayers;

@@ -2,25 +2,35 @@ import React, { useState } from "react";
 import AdminLayout from "../../../../Hoc/adminLayout/AdminLayout";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Button, FormControl, MenuItem, Select, TextField } from "@material-ui/core";
+import {
+	Button,
+	FormControl,
+	MenuItem,
+	Select,
+	TextField,
+} from "@material-ui/core";
 import {
 	textErrorHelper,
 	selectErrorHelper,
 	selectIsError,
-  showErrorToast,
-  showSuccessToast,
+	showErrorToast,
+	showSuccessToast,
 } from "../../../ultils/tools";
 import { playersCollection } from "../../../../firebase";
+import ImageUploader from "../../../ultils/imageUpload";
 
 const defaultValues = {
 	name: "",
 	lastname: "",
 	number: "",
 	position: "",
+	image: "",
 };
 const AddPlayers = (props) => {
-  const [loading, setLoading] = useState(false)
+	const [loading, setLoading] = useState(false);
 	const [values, setValues] = useState(defaultValues);
+	const [updateImage, setUpdateImage] = useState("");
+
 	const formik = useFormik({
 		enableReinitialize: true,
 		initialValues: values,
@@ -32,25 +42,38 @@ const AddPlayers = (props) => {
 				.min(0, "Số nhỏ nhất là 0")
 				.max(100, "Số lớn nhất là 100"),
 			position: Yup.string().required("Trường vị trí bắt buộc"),
+			image: Yup.string().required("Trường ảnh bắt buộc"),
 		}),
-    onSubmit:(values) => {
-      setLoading(true);
-      playersCollection.add(values).then(() => {
-        showSuccessToast("Player được thêm thành công.")
-        formik.resetForm();
-        props.history.push("/admin-players");
-
-      }).catch( error => {
-        showErrorToast(error);
-      })
-    }
+		onSubmit: (values) => {
+			setLoading(true);
+			playersCollection
+				.add(values)
+				.then(() => {
+					showSuccessToast("Player được thêm thành công.");
+					formik.resetForm();
+					props.history.push("/admin-players");
+				})
+				.catch((error) => {
+					showErrorToast(error);
+				});
+		},
 	});
+
+	const updateImageName = (filename) => {
+		formik.setFieldValue("image", filename);
+	};
 	return (
 		<AdminLayout title="Add Players">
 			<div className="editplayers_dialog_wrapper">
 				<div>
 					<form onSubmit={formik.handleSubmit}>
-
+						<FormControl error={selectIsError(formik, "image")}>
+							<ImageUploader
+								dir="player"
+								filename={(filename) => updateImageName(filename)}
+							/>
+							{selectErrorHelper(formik, "image")}
+						</FormControl>
 						<h4>Player Info</h4>
 						<div className="mb-5">
 							<FormControl>
