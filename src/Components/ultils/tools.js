@@ -99,5 +99,6 @@ export const selectErrorHelper = (formik, values) => {
 };
 
 export const selectIsError = (formik, values) => {
+	console.log("values", values);
 	return formik.errors[values] && formik.touched[values];
 }

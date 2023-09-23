@@ -14,12 +14,20 @@ import AdminPlayers from "./Components/admin/adminPlayers/AdminPlayers";
 import AddPlayers from "./Components/admin/adminPlayers/addPlayers/AddPlayers";
 import EditPlayers from "./Components/admin/adminPlayers/editPlayers/EditPlayers";
 import TheTeam from "./Components/the-team/TheTeam";
-
+import AddMatch from "./Components/admin/matches/AddMatch";
+import AdminMatches from "./Components/admin/matches/AdminMatches";
 
 const Routes = ({user}) => {
 	return (
 		<BrowserRouter>
 			<Header user={user} />
+			<Route
+				path="/admin-matches/add-match"
+				exact
+				component={AuthGuard(AddMatch)}
+			/>
+			<Route path="/admin-matches/" exact component={AuthGuard(AdminMatches)} />
+
 			<Route path="/admin-players" exact component={AuthGuard(AdminPlayers)} />
 			<Route
 				path="/admin-players/add-player"
