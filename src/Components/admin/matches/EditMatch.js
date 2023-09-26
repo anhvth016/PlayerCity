@@ -33,7 +33,7 @@ const defaultValues = {
 	final: "",
 };
 
-const AddMatch = (props) => {
+const EditMatch = (props) => {
 	const [loading, setLoading] = useState(false);
 	const [formType, setFormType] = useState("");
 	const [teams, setTeams] = useState(null);
@@ -65,7 +65,7 @@ const AddMatch = (props) => {
 		}),
 		onSubmit: (values) => {
 			// submit form
-			submitForm(values)
+			submitForm(values);
 		},
 	});
 
@@ -80,15 +80,19 @@ const AddMatch = (props) => {
 				data["awayThmb"] = team.thmb;
 			}
 		});
-		matchesCollection.add(values).then(() => {
-			showSuccessToast('Thêm trận đấu thành công.')
-			formik.resetForm();
-		}).catch(error => {
-			showErrorToast('Không thể thêm trận đấu', error)
-		}).finally(() => {
-			setLoading(true)
-		})
-	}
+		matchesCollection
+			.doc(props.match.params.matchid)
+			.update(data)
+			.then(() => {
+				showSuccessToast("Trận đấu được sửa thành công.");
+			})
+			.catch((error) => {
+				showErrorToast("Sửa trận đấu thất bại", error);
+			}).finally(() => {
+        setLoading(false)
+      })
+	};
+
 	const showTeams = () =>
 		teams
 			? teams.map((item) => (
@@ -138,7 +142,7 @@ const AddMatch = (props) => {
 	}, [props.match.params.matchid]);
 
 	return (
-		<AdminLayout title="Trận đấu">
+		<AdminLayout title="Chỉnh sửa trận đấu">
 			<div className="editmatch_dialog_wrapper">
 				<div>
 					<form onSubmit={formik.handleSubmit}>
@@ -291,7 +295,7 @@ const AddMatch = (props) => {
 								color="primary"
 								disabled={loading}
 							>
-								Add Match
+								Sửa
 							</Button>
 						</div>
 					</form>
@@ -301,4 +305,4 @@ const AddMatch = (props) => {
 	);
 };
 
-export default AddMatch;
+export default EditMatch;

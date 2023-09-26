@@ -16,6 +16,7 @@ import EditPlayers from "./Components/admin/adminPlayers/editPlayers/EditPlayers
 import TheTeam from "./Components/the-team/TheTeam";
 import AddMatch from "./Components/admin/matches/AddMatch";
 import AdminMatches from "./Components/admin/matches/AdminMatches";
+import EditMatch from "./Components/admin/matches/EditMatch";
 
 const Routes = ({user}) => {
 	return (
@@ -25,6 +26,11 @@ const Routes = ({user}) => {
 				path="/admin-matches/add-match"
 				exact
 				component={AuthGuard(AddMatch)}
+			/>
+			<Route
+				path="/admin-matches/edit-match/:matchid"
+				exact
+				component={AuthGuard(EditMatch)}
 			/>
 			<Route path="/admin-matches/" exact component={AuthGuard(AdminMatches)} />
 
