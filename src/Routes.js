@@ -17,6 +17,10 @@ import TheTeam from "./Components/the-team/TheTeam";
 import AddMatch from "./Components/admin/matches/AddMatch";
 import AdminMatches from "./Components/admin/matches/AdminMatches";
 import EditMatch from "./Components/admin/matches/EditMatch";
+import TheMatches from "./Components/the-matches/TheMatches";
+import NotFound from "./Components/not-found/NotFound";
+import News from "./Components/home/news/News";
+import Details from "./Components/home/news/Details";
 
 const Routes = ({user}) => {
 	return (
@@ -27,6 +31,8 @@ const Routes = ({user}) => {
 				exact
 				component={AuthGuard(AddMatch)}
 			/>
+			<Route path="/news" exact component={AuthGuard(News)} />
+			<Route path="/details" exact component={AuthGuard(Details)} />
 			<Route
 				path="/admin-matches/edit-match/:matchid"
 				exact
@@ -47,12 +53,14 @@ const Routes = ({user}) => {
 			/>
 			<Route path="/dashboard" exact component={AuthGuard(Dashboard)} />
 			<Route path="/the-team" exact component={TheTeam} />
+			<Route path="/the-matches" exact component={TheMatches} />
 			<Route
 				path="/sign_in"
 				exact
 				component={(props) => <SignIn {...props} user={user} />}
 			/>
 			<Route path="/" exact component={Home} />
+			{/* <Route component={NotFound} /> */}
 			<ToastContainer />
 			<Footer />
 		</BrowserRouter>
