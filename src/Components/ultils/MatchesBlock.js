@@ -1,6 +1,8 @@
 import React from "react";
+import Chelsea from "../../resources/images/logos/49.png";
 
 const MatchesBlock = ({ propsMatch }) => {
+	console.log(propsMatch.localThmb, "111");
 	return (
 		<div className="match_block">
 			<div className="match_date">{propsMatch.date}</div>
@@ -10,7 +12,7 @@ const MatchesBlock = ({ propsMatch }) => {
 						<div
 							className="icon"
 							style={{
-								background: `url(/images/team_icons/${propsMatch.localThmb}.png)`,
+								background: `url(${Chelsea}) center center/cover no-repeat`,
 							}}
 						></div>
 						<div className="team_name">{propsMatch.local}</div>
@@ -24,7 +26,7 @@ const MatchesBlock = ({ propsMatch }) => {
 						<div
 							className="icon"
 							style={{
-								background: `url(/images/team_icons/${propsMatch.awayThmb}.png)`,
+								background: `url(${Chelsea}) center center/cover no-repeat`,
 							}}
 						></div>
 						<div className="team_name">{propsMatch.away}</div>

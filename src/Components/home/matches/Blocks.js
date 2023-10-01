@@ -27,7 +27,9 @@ const Blocks = () => {
 			? matches.map((match) => (
 					<Slide bottom key={match.id} className="item" triggerOnce>
 						<div>
-							<div className="wrapper"><MatchesBlock propsMatch={match}/></div>
+							<div className="wrapper">
+								<MatchesBlock propsMatch={match} />
+							</div>
 						</div>
 					</Slide>
 			  ))

@@ -24,10 +24,10 @@ const Header = ({ user }) => {
 				</div>
 
 				<Link to="/the-team">
-					<Button color="inherit">The team</Button>
+					<Button color="inherit">Đội tuyển</Button>
 				</Link>
 				<Link to="/the-matches">
-					<Button color="inherit">Matches</Button>
+					<Button color="inherit">Trận đấu</Button>
 				</Link>
 
 				{user ? (
@@ -40,7 +40,11 @@ const Header = ({ user }) => {
 							Log out
 						</Button>
 					</>
-				) : null}
+				) : (
+					<Link to="/sign_in">
+						<Button color="inherit">Đăng nhập</Button>
+					</Link>
+				)}
 			</Toolbar>
 		</AppBar>
 	);

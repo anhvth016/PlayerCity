@@ -36,9 +36,11 @@ export const TagMatches = (props) => {
 				background: props.bck ? props.bck : "#ffffff",
 				fontSize: props.size ? props.size : "15px",
 				color: props.color ? props.color : "#000000",
-				padding: "5px 10px",
+				borderBottom: props.border ? props.border : "none",
 				display: "inline-block",
-				fontFamily: "Righteous",
+				width: "100%",
+				fontFamily: props.font ? props.font : "Righteous",
+
 				...props.add,
 			}}
 		>
