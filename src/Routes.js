@@ -1,9 +1,8 @@
 import React from "react";
 import { Route, BrowserRouter } from "react-router-dom";
-import {ToastContainer} from "react-toastify"
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import AuthGuard from "./Hoc/Auth";
-
 
 import Header from "./Components/header/Header";
 import Footer from "./Components/footer/Footer";
@@ -20,19 +19,24 @@ import EditMatch from "./Components/admin/matches/EditMatch";
 import TheMatches from "./Components/the-matches/TheMatches";
 import NotFound from "./Components/not-found/NotFound";
 import News from "./Components/home/news/News";
-import Details from "./Components/home/news/Details";
+import Details from "./Components/home/news/detail-news/Details";
+import StarDetail from "./Components/home/star-players/StarDetail";
+import StarPlayers from "./Components/home/star-players/StarPlayers";
 
-const Routes = ({user}) => {
+const Routes = ({ user }) => {
 	return (
 		<BrowserRouter>
-			<Header user={user} />
-			<Route
-				path="/admin-matches/add-match"
-				exact
-				component={AuthGuard(AddMatch)}
-			/>
-			<Route path="/news" exact component={AuthGuard(News)} />
-			<Route path="/details" exact component={AuthGuard(Details)} />
+			<Route path="/" exact component={Home} />
+
+			<Route path="/star" exact component={StarPlayers} />
+			<Route path="/star/star-details/:id" exact component={StarDetail} />
+
+			<Route path="/news" exact component={News} />
+			<Route path="/news/details/:id" exact component={Details} />
+
+			<Route path="/the-team" exact component={TheTeam} />
+			<Route path="/the-matches" exact component={TheMatches} />
+
 			<Route
 				path="/admin-matches/edit-match/:matchid"
 				exact
@@ -52,14 +56,19 @@ const Routes = ({user}) => {
 				component={AuthGuard(EditPlayers)}
 			/>
 			<Route path="/dashboard" exact component={AuthGuard(Dashboard)} />
-			<Route path="/the-team" exact component={TheTeam} />
-			<Route path="/the-matches" exact component={TheMatches} />
+
 			<Route
 				path="/sign_in"
 				exact
 				component={(props) => <SignIn {...props} user={user} />}
 			/>
-			<Route path="/" exact component={Home} />
+			<Header user={user} />
+			<Route
+				path="/admin-matches/add-match"
+				exact
+				component={AuthGuard(AddMatch)}
+			/>
+
 			{/* <Route component={NotFound} /> */}
 			<ToastContainer />
 			<Footer />
