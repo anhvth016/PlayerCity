@@ -1,4 +1,5 @@
 import React from "react";
+import LeagueTable from "../../ultils/LeagueTable";
 import { TagMatches } from "../../ultils/tools";
 import TableCharts from "./TableCharts";
 
@@ -10,7 +11,7 @@ const Charts = () => {
 					size="30px"
 					color="#252525"
 					font="Roboto, sans-serif"
-					border="1px solid #e3e3e3"
+					borderBottom="1px solid rgb(227, 227, 227)"
 				>
 					<div style={{ fontWeight: "700", padding: "5px 30px" }}>
 						Bảng xếp hạng
@@ -18,7 +19,7 @@ const Charts = () => {
 				</TagMatches>
 
 				<div className="body_chart">
-					<TableCharts />
+					<LeagueTable />
 				</div>
 			</div>
 		</div>

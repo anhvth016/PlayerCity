@@ -9,7 +9,7 @@ import moment from "moment";
 import "moment/locale/vi";
 
 
-const MeetPlayers = () => {
+const Star = () => {
 	const [played, setPlayed] = useState(null);
 	useEffect(() => {
 		getPlayedStart()
@@ -19,8 +19,7 @@ const MeetPlayers = () => {
 			.catch((error) => {
 				console.log(error);
 			});
-	}, [])
-
+	}, []);
 
 	let date = null;
 	if (played) {
@@ -44,8 +43,8 @@ const MeetPlayers = () => {
 						<div className="player_start">
 							<div className="left">
 								{played &&
-									played.map((player) => (
-										<div className="player_box">
+									played.map((player, index) => (
+										<div className="player_box" key={index}>
 											<div className="news_img">
 												<Link to={`/star/star-details/${player.id}`}>
 													<img
@@ -76,11 +75,11 @@ const MeetPlayers = () => {
 									))}
 							</div>
 						</div>
-						<LoadMore Linkto="/star" />
+						<LoadMore linkTo="/star" />
 					</div>
 				</div>
 			</div>
 		</div>
 	);
 };
-export default MeetPlayers;
+export default Star;

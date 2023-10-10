@@ -2,7 +2,6 @@ import React from "react";
 import Chelsea from "../../resources/images/logos/49.png";
 
 const MatchesBlock = ({ propsMatch }) => {
-	console.log(propsMatch.localThmb, "111");
 	return (
 		<div className="match_block">
 			<div className="match_date">{propsMatch.date}</div>

@@ -23,8 +23,9 @@ const Header = ({ user }) => {
 					</div>
 				</div>
 
-				<Link to="/the-team">
-					<Button color="inherit">Đội tuyển</Button>
+				{/* <Link to="/the-team"> */}
+				<Link to="/star">
+					<Button color="inherit">Ngôi sao thể thao</Button>
 				</Link>
 				<Link to="/the-matches">
 					<Button color="inherit">Trận đấu</Button>

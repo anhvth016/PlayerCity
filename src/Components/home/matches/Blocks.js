@@ -8,6 +8,7 @@ const Blocks = () => {
 	useEffect(() => {
 		if (!matches.length > 0) {
 			matchesCollection
+				.limit(4)
 				.get()
 				.then((snapshot) => {
 					const matches = snapshot.docs.map((doc) => ({

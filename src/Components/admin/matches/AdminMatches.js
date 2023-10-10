@@ -62,7 +62,7 @@ const AdminMatches = () => {
 		}
 	};
   return (
-		<AdminLayout title="The matches">
+		<AdminLayout title="Các trận đấu">
 			<div className="mb-5">
 				<Button
 					disableElevation

@@ -36,11 +36,13 @@ export const TagMatches = (props) => {
 				background: props.bck ? props.bck : "#ffffff",
 				fontSize: props.size ? props.size : "15px",
 				color: props.color ? props.color : "#000000",
-				borderBottom: props.border ? props.border : "none",
+				borderBottom: props.borderBottom ? props.borderBottom : "none",
+				// border: props.border ? props.border : "none",
 				display: "inline-block",
-				width: "100%",
+				borderRadius: props.radius ? props.radius : "none",
+				width: props.width ? props.width : "100%",
+				marginTop: props.margin ? props.margin : "0",
 				fontFamily: props.font ? props.font : "Righteous",
-
 				...props.add,
 			}}
 		>
@@ -101,6 +103,5 @@ export const selectErrorHelper = (formik, values) => {
 };
 
 export const selectIsError = (formik, values) => {
-	//console.log("values", values);
 	return formik.errors[values] && formik.touched[values];
 }

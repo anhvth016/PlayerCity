@@ -4,7 +4,7 @@ import AdminLayout from "../../../Hoc/adminLayout/AdminLayout";
 const Dashboard = () => {
   //console.log(props)
 	return (
-		<AdminLayout title="Dashboard">
+		<AdminLayout title="Admin">
       <div className="user_dashboard">This is your Dashboard</div>
     </AdminLayout>
 	);

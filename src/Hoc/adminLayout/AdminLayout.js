@@ -2,7 +2,6 @@ import React from "react";
 import AdminNav from "../../Components/admin/adminNav/AdminNav";
 
 const AdminLayout = (props) => {
-	//console.log(props);
 	return (
 		<div className="admin_container">
 			<div className="admin_left_nav">

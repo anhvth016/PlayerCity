@@ -1,6 +1,6 @@
 import React from "react";
 import BckNews from "../../../resources/images/logos/bck-news.png";
-import Details from "./Details";
+// import Details from "./detail-news/Details";
 import FeaturedNews from "./FeaturedNews";
 
 const News = () => {

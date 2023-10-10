@@ -11,6 +11,8 @@
     "d3-ease": "^2.0.0",
     "firebase": "^8.2.9",
     "formik": "^2.2.6",
+    "html-react-parser": "^4.2.2",
+    "lodash": "^4.17.21",
     "moment": "^2.29.4",
     "react": "^17.0.1",
     "react-awesome-reveal": "^3.7.0",

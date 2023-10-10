@@ -9,7 +9,7 @@ const LoadMore = (props) => {
 				disableElevation
 				variant="outlined"
 				component={Link}
-				to={props.Linkto}
+				to={props.linkTo}
 				style={{ border: "none" }}
 				className="seemore"
 			>

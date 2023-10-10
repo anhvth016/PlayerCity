@@ -7,7 +7,7 @@ import {
 	TableRow,
 } from "@material-ui/core";
 import Chelsea from "../../../resources/images/logos/49.png"
-import ButtonStar from "../meetPlayers/ButtonStar";
+import LoadMore from "../../common/LoadMore";
 
 const TableCharts = () => {
   return (
@@ -19,7 +19,9 @@ const TableCharts = () => {
 						<TableRow className="charts_table">
 							<TableCell className="places">Thứ hạng</TableCell>
 							<TableCell>Trận</TableCell>
-							<TableCell>+/-</TableCell>
+							<TableCell>Thắng</TableCell>
+							<TableCell>Thua</TableCell>
+							<TableCell>Hoà</TableCell>
 							<TableCell>Điểm</TableCell>
 							<TableCell>Phong độ</TableCell>
 						</TableRow>
@@ -42,7 +44,11 @@ const TableCharts = () => {
 							</TableCell>
 							<TableCell>2</TableCell>
 							<TableCell>3</TableCell>
-							<TableCell><strong>4</strong></TableCell>
+							<TableCell>3</TableCell>
+							<TableCell>3</TableCell>
+							<TableCell>
+								<strong>4</strong>
+							</TableCell>
 							<TableCell style={{ textAlign: "inherit" }}>
 								<span className="ratings">T</span>
 								<span className="ratings">T</span>
@@ -54,7 +60,7 @@ const TableCharts = () => {
 					</TableBody>
 				</Table>
 			</div>
-      <ButtonStar/>
+			<LoadMore />
 		</div>
 	);
 }

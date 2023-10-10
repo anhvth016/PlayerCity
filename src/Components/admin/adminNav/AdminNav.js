@@ -6,11 +6,11 @@ import { logoutHandler } from "../../ultils/tools";
 const AdminNav = (props) => {
 	const linkItem = [
 		{
-			title: "Matches",
+			title: "Trận đấu",
 			linkTo: "/admin-matches",
 		},
 		{
-			title: "Players",
+			title: "Ngôi sao",
 			linkTo: "/admin-players",
 		},
 	];
@@ -31,7 +31,7 @@ const AdminNav = (props) => {
 				className="admin_nav_link"
 				onClick={() => logoutHandler()}
 			>
-				Log out
+				Đăng xuất
 			</ListItem>
 		</div>
 	);

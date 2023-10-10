@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import NewsImg from "../../../resources/images/test/news.png";
-import BreadCrumb from "../../ultils/BreadCrumb";
+import BreadCrumb from "../../common/BreadCrumb";
 import { getPlayedId } from "../../../temp/news-db";
 import { useParams } from "react-router-dom";
 import moment from "moment";

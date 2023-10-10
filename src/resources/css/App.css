@@ -246,7 +246,7 @@ footer .footer_discl {
 	flex-wrap: wrap;
 	display: flex;
 	/* margin-top: 60px; */
-	border: 1px solid #ebebeb;
+	/* border: 1px solid #ebebeb; */
 }
 
 .home_matches_wrapper .home_matches .item {
@@ -375,9 +375,26 @@ footer .footer_discl {
 }
 
 .match_filters .tag {
-	font-weight: 300;
+	/* font-weight: 300;
 	margin-bottom: 5px;
-	color: #656565;
+	color: #656565; */
+
+	min-width: 96px;
+	text-align: center;
+	background: #fffffe;
+	border: 0.5px solid #aeb4c4;
+	border-radius: 6px;
+
+	color: #38404d;
+	font-size: 14px;
+	line-height: 21px;
+	font-weight: 600;
+	padding: 8.5px 20px;
+	/* margin: 0 12px 0 0; */
+	padding: 10px 5px;
+}
+.match_filter_logo img {
+	width: 150px;
 }
 
 .match_filters .option {
@@ -392,12 +409,26 @@ footer .footer_discl {
 .match_filters .option.active {
 	background: #62a2d3;
 	color: #fff;
+	min-width: 96px;
+	text-align: center;
+	/* background: #fffffe; */
+	border: 0.5px solid #aeb4c4;
+	border-radius: 6px;
+	/* color: #38404d; */
+	font-size: 14px;
+	line-height: 21px;
+	font-weight: 600;
+	padding: 8.5px 20px;
+	/* margin: 0 12px 0 0; */
+	padding: 10px 5px;
 }
 
 .match_filters_box {
-	padding: 10px 20px;
-	border-right: 1px solid #01285e;
-	background: #dff1ff;
+	padding: 10px;
+	display: flex;
+	align-items: center;
+	/* border-right: 1px solid #01285e; */
+	/* background: #dff1ff; */
 }
 
 .match_filters .cont {
@@ -556,6 +587,7 @@ footer .footer_discl {
 
 .the_matches_wrapper {
 	display: flex;
+	background: #f9f9f9;
 }
 
 .the_matches_wrapper .left {
@@ -799,10 +831,13 @@ footer .footer_discl {
 	margin-bottom: 10px;
 	font-weight: 700;
 }
+.news_box .news_info .title:hover {
+	color: #98c5e9;
+}
 
 .news_box .news_info .des {
 	font-size: 24px;
-	line-height: 25px;
+	line-height: 33px;
 	margin: 0;
 }
 
@@ -841,7 +876,7 @@ footer .footer_discl {
 .player_start .player_box {
 	flex: 0 0 210px;
 	height: 144px;
-	margin: 10px 20px 0 0;
+	margin: 20px 0;
 }
 .player_start .news_info {
 	flex: 1;
@@ -934,10 +969,11 @@ footer .footer_discl {
 } */
 .charts_cell .STT {
 	color: #949494;
+	width: 20px;
 }
 
 .places {
-	width: 65%;
+	width: 50%;
 }
 
 .ratings {
@@ -951,7 +987,6 @@ footer .footer_discl {
 	color: #fff;
 	display: inline-block;
 	vertical-align: middle;
-	background: #98c5e9;
 	margin-right: 4px;
 }
 
@@ -1000,11 +1035,19 @@ footer .footer_discl {
 
 /* header detail */
 .width_common {
-	width: 100%;
-	display: flex;
-	/* float: left; */
+	width: 60%;
+	/* display: flex;
+	float: left; */
 }
-
+.header_breadcrumb {
+	display: flex;
+	align-items: center;
+}
+.header_breadcrumb .date {
+	font-size: 14px;
+	color: #757575;
+	text-transform: capitalize;
+}
 .breadcrumb {
 	float: left;
 	padding-left: 0;
@@ -1028,11 +1071,11 @@ footer .footer_discl {
 	font-size: 14px;
 } */
 
-.header-content {
+/* .header-content {
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-}
+} */
 
 .breadcrumb .breadcrumb_child:after {
 	content: "";
@@ -1105,6 +1148,9 @@ footer .footer_discl {
 	margin-bottom: 10px;
 	font-weight: 700;
 }
+.box_colums .news_info .title:hover {
+	color: #98c5e9;
+}
 
 .box_colums .news_info .des {
 	font-size: 24px;
@@ -1120,6 +1166,168 @@ footer .footer_discl {
 	margin-left: 10px;
 }
 
-.box_colums{
+.box_colums {
 	width: 48%;
+}
+
+/* table league */
+.matches_transcript {
+	background-color: #ffffff;
+	box-shadow: 0px 2px 2px rgba(185, 192, 210, 0.2);
+	margin: 30px 0;
+}
+.league_table {
+	border: 1px solid #e5e5e5;
+}
+.matches_transcript .charts_body tr {
+	border-bottom: 1px solid #e5e5e5;
+}
+.matches_transcript table {
+	border: 1px solid #e5e5e5;
+}
+.matches_transcript .charts_table {
+	background: #fafafa;
+	border-radius: 6px 6px 0px 0px;
+	border-bottom: 1px solid #e5e5e5;
+}
+.matches_transcript th {
+	padding: 10px 16px;
+	color: #38404d;
+}
+.match_filters {
+	background: #fff;
+	border: 1px solid #e5e5e5;
+	margin-top: 30px;
+	box-shadow: 0px 2px 2px rgba(185, 192, 210, 0.2);
+	border-top: 6px solid #98c5e9;
+	border-radius: 6px;
+}
+.match_filters_result {
+	background: rgb(57, 63, 54);
+	display: flex;
+	padding: 10px;
+	border-radius: 6px 6px 0px 0px;
+}
+.cont_result_filters {
+	display: flex;
+	align-items: center;
+}
+.cont_result_filters .option {
+	margin-right: 5px;
+	background: #62a2d3;
+	color: #fff;
+	min-width: 96px;
+	text-align: center;
+	/* background: #fffffe; */
+	border: 0.5px solid #aeb4c4;
+	border-radius: 6px;
+	/* color: #38404d; */
+	font-size: 14px;
+	line-height: 21px;
+	font-weight: 600;
+	padding: 8.5px 20px;
+	/* margin: 0 12px 0 0; */
+	padding: 10px 5px;
+
+	background: #94a2b8;
+	border: 0.5px solid #4c5979;
+	border-radius: 6px;
+	padding: 0 10px 0 8px;
+	outline: none;
+	height: 32px;
+	line-height: 32px;
+	cursor: pointer;
+}
+.box_matches_list {
+	margin-top: 20px;
+	text-align: center;
+}
+.player_box .news_info .des:hover {
+	color: #98c5e9;
+}
+
+/* css star */
+.star_box_right {
+	display: flex;
+	margin-left: 15px;
+	padding-bottom: 10px;
+}
+.star_wrapper {
+	margin-top: 120px;
+	margin-bottom: 30px;
+}
+.star_home {
+	display: flex;
+	margin-top: 10px;
+}
+.star_home .left {
+	flex-grow: 1;
+}
+.star_home .right {
+	width: 400px;
+}
+.star_box_right .star_img img {
+	max-width: 150px;
+	height: 100%;
+	margin: 0 15px 0 0;
+}
+.star_box_right:not(:first-child) {
+	padding-top: 10px;
+}
+.star_box_right:not(:last-child) {
+	border-bottom: 1px solid rgb(227, 227, 227);
+}
+.star_box_right:last-child {
+	padding-bottom: 0;
+}
+.star_colums .title {
+	margin: 0;
+	font-size: 14px;
+	font-weight: 600;
+	line-height: 20px;
+}
+
+.star_box .star_info .title {
+	font-size: 24px;
+	line-height: 34px;
+	color: #fff;
+	padding: 20px;
+	font-weight: 600;
+	background-image: linear-gradient(
+		0deg,
+		rgba(0, 0, 0, 0.9019607843137255) 0%,
+		rgba(0, 0, 0, 0) 99%
+	);
+}
+.star_box {
+	position: relative;
+}
+.star_box .star_info {
+	position: absolute;
+	bottom: 0;
+}
+
+/* css latest star */
+.latest_box {
+	flex: 0 0 210px;
+	height: 144px;
+	margin: 30px 0;
+	display: flex;
+}
+
+.latest_warpper {
+	margin-top: 10px;
+}
+.latest_info {
+	margin-left: 20px;
+}
+
+.ratings.win{
+	background: #98c5e9;
+}
+.ratings.lose {
+	background: #F34848;
+}
+.ratings.draw {
+	background: #757575;
 }
