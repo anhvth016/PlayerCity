@@ -1,0 +1,8 @@
+**/dist
+.git
+**/.DS_Store
+**/node_modules/
+**/.vscode
+**/.gitignore
+README.md
+

@@ -1,0 +1,17 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: mcity
+    image: mcity:latest
+    tty: true
+    build:
+      context: .
+    ports:
+      - 9999:80
+    networks:
+      - pol-network
+
+networks:
+  pol-network:
+    driver: bridge
