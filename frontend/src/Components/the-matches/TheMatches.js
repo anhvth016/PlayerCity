@@ -7,11 +7,15 @@ import LeagueTable from "../ultils/LeagueTable";
 import { TagMatches } from "../ultils/tools";
 import LogoFilters from "../../resources/images/logos/logo-filters.png";
 import {AppContext} from "../../Components/context/AppContext";
+import axios from "axios";
 
 const TheMatches = () => {
 	const appContext = useContext(AppContext);
 
 	const { matches, updateMatch, filterMatches, updateFilterMatch } = appContext;
+
+	const [matchesList, setMatchesList] = useState([]);
+
 	/** 1. SỬ DỤNG REDUX-TOOLKIT ĐỂ QUẢN LÝ STATE DANH SÁCH TRẬN ĐẤU */
 
 	/** 1.1 LẤY DỮ LIỆU TRẬN ĐẤU TỪ API */
@@ -36,27 +40,13 @@ const TheMatches = () => {
 	//console.log(filterMatches);
 
 	useEffect(() => {
-		if (matches.length == 0) {
-			matchesCollection
-				.get()
-				.then((snapshot) => {
-					const match = snapshot.docs.map((doc) => ({
-						id: doc.id,
-						...doc.data(),
-					}));
-					console.log('match');
-					console.log(match);
-					updateMatch(match);
-					// dispatch({ ...state, filterMatches: matches });
-				})
-				.catch((error) => {
-					showErrorToast(error);
-				});
-			// .finally(() => {
-			// 	setLoading(false);
-			// });
+		const fetchMatches = async () => {
+			const res = await axios.get('http://localhost:8000/api/matches');
+			setMatchesList(res.data);
 		}
-	}, [matches]);
+
+		fetchMatches()
+	}, []);
 
 	const showPlayed = (played) => {
 		// all, yes, no
@@ -122,7 +112,7 @@ const TheMatches = () => {
 								</div>
 
 								<div className="box_matches_list">
-									<Filter matches={filterMatches} />
+									<Filter matches={matchesList} />
 								</div>
 							</div>
 

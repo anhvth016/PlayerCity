@@ -36,7 +36,7 @@ export interface IPosition {
 export interface IMatch {
     away: string | ITeam;
     local: string | ITeam;
-    date: string;
+    date?: string;
     referee?: string;
     stadium?: string;
     resultAway?: number;
@@ -86,7 +86,7 @@ const MatchSchema = new mongoose.Schema({
         require: true
     },
     date: {
-        type: Number,
+        type: String,
         require: true
     },
     referee: {

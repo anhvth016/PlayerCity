@@ -7,7 +7,7 @@ import { showErrorToast } from "../../ultils/tools";
 import FilterList from "./FilterList";
 import { AppContext } from "../../context/AppContext";
 
-const Filter = () => {
+const Filter = ({matchesList}) => {
 	const { matches, updateMatch, filterMatches, updateFilterMatch } =
 		useContext(AppContext);
 

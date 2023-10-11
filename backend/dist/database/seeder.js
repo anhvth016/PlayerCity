@@ -5,13 +5,14 @@ dotenv.config({
 console.log(process.cwd());
 import colors from "colors";
 import connectDb from "./db.js";
-import { Teams } from "./seeds/dataSeed.js";
-import { TeamModel } from "./models/model.js";
+import { Teams, Position, Matches } from "./seeds/dataSeed.js";
+import { MatchModel, PositionModel, TeamModel } from "./models/model.js";
 const truncate = async () => {
     try {
         await connectDb();
         console.log(colors.bgGreen("PREPARE TO TRUNCATE DATA!"));
         await TeamModel.deleteMany();
+        await PositionModel.deleteMany();
         console.log(colors.bgGreen("TRUNCATE MONGDB SUCCESS!"));
     }
     catch (e) {
@@ -24,11 +25,19 @@ const importSeed = async () => {
     try {
         console.log(colors.bgGreen("PREPARE TO SEED DATA!"));
         await truncate();
-        const teamList = await TeamModel.insertMany(Teams);
-        // const userPopulatedProducts = productsDataSeed.map((seed) => {
-        //   return { ...seed, user: userList[0]._id };
-        // });
-        // const productList = await Product.insertMany([...userPopulatedProducts, ...userPopulatedProducts]);
+        await TeamModel.insertMany(Teams);
+        const positionListRaw = await Promise.all(Position.map(async (p) => {
+            const team = await TeamModel.findOne({ shortName: p.team });
+            p.team = team?._id.toString();
+            return p;
+        }));
+        await PositionModel.insertMany(positionListRaw);
+        const matchesRaw = await Promise.all(Matches.map(async (m) => {
+            const local = await TeamModel.findOne({ shortName: m.local });
+            const away = await TeamModel.findOne({ shortName: m.away });
+            return { ...m, local: local?._id, away: away?._id };
+        }));
+        await MatchModel.insertMany(matchesRaw);
         console.log(colors.bgGreen("SEED MONGDB SUCCESS!"));
         process.exit(0);
     }

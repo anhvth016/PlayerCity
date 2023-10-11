@@ -3,7 +3,7 @@ import asyncHandler from "../middlewares/asyncHandler.middleware.js";
 import { BaseRequest } from "../types/requests/baseRequest.js";
 import { pause } from "../utils/utils.js";
 import ApiError from "../types/apiError.js";
-import { INews, NewsModel } from "../../database/models/model.js";
+import { INews, MatchModel, NewsModel, PositionModel } from "../../database/models/model.js";
 
 
 
@@ -15,9 +15,9 @@ import { INews, NewsModel } from "../../database/models/model.js";
  * @access public
  */
 export const getAllNews = asyncHandler(async (req: BaseRequest<{}>, res: Response, next: NextFunction) => {
-    let news = await NewsModel.find();
-    news = news.map( n => n.toObject());
-    return res.status(200).json(news);
+    const news = await NewsModel.find();
+    const rs = news.map( n => n.toObject());
+    return res.status(200).json(rs);
 })
 
 /**
@@ -46,5 +46,45 @@ export const createNews = asyncHandler(async (req: BaseRequest<INews>, res: Resp
     let news = new NewsModel({...data});
     news = await news.save();
     return res.status(201).json(news);
+})
+
+
+/**
+ * @desc getPosition
+ * @route /api/position/
+ * @method GET
+ * @access public
+ */
+export const getPosition = asyncHandler(async (req: BaseRequest<{}>, res: Response, next: NextFunction) => {
+    const rs = await PositionModel.find().populate('team').sort({totalScore: -1});
+    return res.status(201).json(rs);
+})
+
+/**
+ * @desc getAllMatches
+ * @route /api/matches/
+ * @method GET
+ * @access public
+ */
+export const getAllMatches = asyncHandler(async (req: BaseRequest<{}>, res: Response, next: NextFunction) => {
+    const rs = await MatchModel.find().populate('away local');
+    return res.status(201).json(rs);
+})
+
+/**
+ * @desc get5MatchesOfTeam
+ * @route /api/matches/:id
+ * @method GET
+ * @access public
+ */
+export const get5MatchesOfTeam = asyncHandler(async (req: BaseRequest<{}>, res: Response, next: NextFunction) => {
+    const id = req.params.id;
+    const rs = await MatchModel.find({
+        $or: [
+            {'local': id},
+            {'away': id},
+        ]
+    }).populate('away local').sort({'date': -1}).limit(5);
+    return res.status(200).json(rs);
 })
 
