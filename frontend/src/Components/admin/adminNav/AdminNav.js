@@ -6,6 +6,10 @@ import { logoutHandler } from "../../ultils/tools";
 const AdminNav = (props) => {
 	const linkItem = [
 		{
+			title: "Tin tức",
+			linkTo: "/news-manager",
+		},
+		{
 			title: "Trận đấu",
 			linkTo: "/admin-matches",
 		},

@@ -6,6 +6,7 @@ import ReactQuill, { Quill } from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import "./newsManager.css";
 import DisplayNews from "./DisplayNews";
+import AdminLayout from "../../../Hoc/adminLayout/AdminLayout";
 
 const NewsManager = () => {
   const quillRef = useRef(null);
@@ -75,37 +76,56 @@ const NewsManager = () => {
   ];
 
   return (
-    <>
-      <form onSubmit={handleSubmit} style={{ paddingTop: "100px" }}>
-        {/* <input
+		<AdminLayout title="Tin tức thể thao">
+			<div className="news_manager">
+				<form onSubmit={handleSubmit}>
+					{/* <input
         type="text"
         placeholder="Tiêu đề bài báo"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       /> */}
-        <TextField
-          id="name"
-          name="name"
-          variant="outlined"
-          placeholder="Tiêu đề bài báo"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <div className="editor_container">
-          <ReactQuill
-            modules={modules}
-            formats={formats}
-            theme="snow"
-            value={editorData}
-            onChange={setEditorData}
-            style={{ height: "100%" }}
-          />
-          ;<Button type="submit">Submit</Button>
-        </div>
-      </form>
-      <DisplayNews />
-    </>
-  );
+					<TextField
+						id="name"
+						name="name"
+						label="Tiêu đề bài báo"
+						variant="filled"
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+					/>
+
+					{/* <TextField
+						id="name"
+						name="name"
+						variant="outlined"
+						placeholder="Tiêu đề bài báo"
+						value={title}
+						onChange={(e) => setTitle(e.target.value)}
+					/> */}
+					<div className="editor_container">
+						<div className="content">Nội dung</div>
+						<ReactQuill
+							modules={modules}
+							formats={formats}
+							theme="snow"
+							value={editorData}
+							onChange={setEditorData}
+							style={{ height: "100%" }}
+						/>
+						<Button
+							type="submit"
+							variant="contained"
+							color="primary"
+              style={{marginTop: '10px'}}
+						>
+							Lưu
+						</Button>
+					</div>
+				</form>
+			</div>
+			<DisplayNews />
+		</AdminLayout>
+	);
 };
 
 export default NewsManager;
