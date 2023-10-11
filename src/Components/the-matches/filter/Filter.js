@@ -23,70 +23,38 @@ const Filter = () => {
 			return match.result === result;
 		});
 	};
-//console.log("fil:terMatches");
-console.log('fil:terMatches',filterMatches);
+	console.log("fil:terMatches", filterMatches);
 	return (
 		<>
-			{/* {(
-				<> */}
-			<>
-				<div className="match_filters_result">
-					<TagMatches
-						size="18px"
-						color="#ffffff"
-						font="Roboto, sans-serif"
-						radius="6px 6px 0px 0px"
-						width="70%"
-						bck="transparent"
+			<div className="match_filters_result">
+				<TagMatches
+					size="18px"
+					color="#ffffff"
+					font="Roboto, sans-serif"
+					radius="6px 6px 0px 0px"
+					width="67%"
+					bck="transparent"
+				>
+					<div
+						style={{
+							fontWeight: "700",
+							padding: "6px 0 0 24px",
+							textAlign: "left",
+						}}
 					>
-						<div
-							style={{
-								fontWeight: "700",
-								padding: "10px 30px",
-								textAlign: "left",
-							}}
-						>
-							Trận đấu
-						</div>
-					</TagMatches>
-					<div className="cont cont_result_filters">
-						<div
-							// className={`option ${
-							// 	state.playedFilter === "All" ? "active" : ""
-							// }`}
-							onClick={() => showPlayed("All")}
-						>
-							Tất cả trận đấu
-						</div>
-						<div
-							// className={`option ${
-							// 	state.playedFilter === "yes" ? "active" : ""
-							// }`}
-							onClick={() => showPlayed("yes")}
-						>
-							Đã chơi
-						</div>
-						<div
-							// className={`option ${
-							// 	state.playedFilter === "no" ? "active" : ""
-							// }`}
-							onClick={() => showPlayed("no")}
-						>
-							Lịch đấu
-						</div>
+						Trận đấu
 					</div>
+				</TagMatches>
+				<div className="cont cont_result_filters">
+					<div onClick={() => showPlayed("All")}>Tất cả trận đấu</div>
+					<div onClick={() => showPlayed("yes")}>Đã chơi</div>
+					<div onClick={() => showPlayed("no")}>Lịch đấu</div>
 				</div>
-				<div className="box_filter_list">
-					{/* {loading ? (
-									<CircularProgress/>
-								) : ( */}
-					<FilterList matches={filterMatches} />
-					{/* )} */}
-				</div>
-			</>
+			</div>
+			<div className="box_filter_list">
+				<FilterList matches={filterMatches} />
+			</div>
 		</>
-		// 	)}
-		// </>
 	);
 };
 

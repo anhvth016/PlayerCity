@@ -2,12 +2,11 @@ import { React, useEffect, useState } from "react";
 
 import { TagMatches } from "../../ultils/tools";
 import { Link } from "react-router-dom";
-import Start from "../../../resources/images/test/co-giao.png"
+import Start from "../../../resources/images/test/co-giao.png";
 import LoadMore from "../../common/LoadMore";
 import { getPlayedStart } from "../../../temp/news-db";
 import moment from "moment";
 import "moment/locale/vi";
-
 
 const Star = () => {
 	const [played, setPlayed] = useState(null);

@@ -35,6 +35,7 @@ const Details = (props) => {
 	// 	})
 	// }, [])
 
+	console.log(content)
 	return (
 		<>
 			<div className="home_details_wrapper ">

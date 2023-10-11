@@ -33,6 +33,7 @@ const TheMatches = () => {
 		}
 	);
 
+	//console.log(filterMatches);
 
 	useEffect(() => {
 		if (matches.length == 0) {
@@ -56,7 +57,6 @@ const TheMatches = () => {
 			// });
 		}
 	}, [matches]);
-	console.log(matches);
 
 	const showPlayed = (played) => {
 		// all, yes, no
@@ -122,7 +122,7 @@ const TheMatches = () => {
 								</div>
 
 								<div className="box_matches_list">
-									{<Filter matches={filterMatches} />}
+									<Filter matches={filterMatches} />
 								</div>
 							</div>
 

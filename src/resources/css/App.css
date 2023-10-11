@@ -550,7 +550,7 @@ footer .footer_discl {
 }
 
 .promotion_wrapper .enroll_title {
-	font-family: "Righteous", cursive;
+	/* font-family: "Righteous", cursive; */
 	font-size: 26px;
 	color: #4e4e4e;
 }
@@ -1322,12 +1322,43 @@ footer .footer_discl {
 	margin-left: 20px;
 }
 
-.ratings.win{
+.ratings.win {
 	background: #98c5e9;
 }
 .ratings.lose {
-	background: #F34848;
+	background: #f34848;
 }
 .ratings.draw {
 	background: #757575;
+}
+
+.cont_result_filters > div {
+	background: #94a2b8;
+	padding: 7px 30px 7px 10px;
+	font-size: 14px;
+	color: #ffffff;
+	border-radius: 6px;
+	position: relative;
+}
+.cont_result_filters > div:not(:last-child) {
+	margin-right: 20px;
+}
+.cont_result_filters > div::before {
+	content: "";
+	width: 7px;
+	height: 7px;
+	border-right: 1px solid #fff;
+	border-bottom: 1px solid #fff;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	z-index: 2;
+	-webkit-transition: all 0.4s ease-in-out;
+	transition: all 0.4s ease-in-out;
+}
+.cont_result_filters > div:hover {
+	cursor: pointer;
+	background: #687c9b;
 }

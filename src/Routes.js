@@ -22,6 +22,7 @@ import News from "./Components/home/news/News";
 import Details from "./Components/home/news/detail-news/Details";
 import StarDetail from "./Components/home/star-players/StarDetail";
 import StarPlayers from "./Components/home/star-players/StarPlayers";
+import NewsManager from "./Components/admin/newsManager/NewsManager";
 
 const Routes = ({ user }) => {
 	return (
@@ -36,7 +37,7 @@ const Routes = ({ user }) => {
 
 			<Route path="/the-team" exact component={TheTeam} />
 			<Route path="/the-matches" exact component={TheMatches} />
-
+			<Route path="/news-manager" exact component={NewsManager} />
 			<Route
 				path="/admin-matches/edit-match/:matchid"
 				exact

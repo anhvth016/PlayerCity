@@ -6,7 +6,7 @@ import {
 	TableRow,
 } from "@material-ui/core";
 import React, { useState, useEffect, useContext } from "react";
-import _ from 'lodash';
+import _ from "lodash";
 
 import { positionsCollection } from "../../firebase";
 import Chelsea from "../../resources/images/logos/49.png";
@@ -14,39 +14,12 @@ import LoadMore from "../common/LoadMore";
 import { AppContext } from "../context/AppContext";
 import { getNewsDb } from "../../temp/news-db";
 
-
 const LeagueTable = () => {
 	const [positions, setPosition] = useState(null);
-	const [teams, setTeams] = useState(null);
 	const [lastVisible, setLastVisible] = useState(null);
-	const [sortDate, setSortDate] = useState(null);
 
 	const context = useContext(AppContext);
 	const { matches } = context;
-	console.log(matches);
-
-	const sortMatch = matches.sort((a, b) => {
-		let date1 = new Date(a.date);
-		let date2 = new Date(b.date);
-		return date2.getTime() - date1.getTime()
-	});
-	// sortMatch.map((e) => {
-	// 	console.log(`${e.date} `);
-	// });
-
-
-
-	// useEffect(() => {
-	// 	if(!teams) {
-	// 		getNewsDb().then((response) => {
-	// 			setTeams(response)
-	// 		}).catch((error) => {
-	// 			console.log(error)
-	// 		})
-	// 	}
-	// }, [])
-
-	// console.log(teams)
 
 	useEffect(() => {
 		if (!positions) {
@@ -64,18 +37,16 @@ const LeagueTable = () => {
 				});
 		}
 	});
-	console.log(positions)
 
 	const result = [];
-	for (let i = 1; i<= 5; i++) {
-		if(matches[i]) {
+	for (let i = 1; i <= 5; i++) {
+		if (matches[i]) {
 			result.push(matches[i]);
 		}
 	}
-	console.log(result);
 
-	const showTeamMatch = (teamName) => { // Ten doi
-		const teamMatches = matches.filter(match => { // Toan bo match cua doi bong co teamName
+	const showTeamMatch = (teamName) => {
+		const teamMatches = matches.filter((match) => {
 			return match.away === teamName || match.local === teamName;
 		});
 		teamMatches.sort((match1, match2) => {
@@ -84,18 +55,17 @@ const LeagueTable = () => {
 			return date2.getTime() - date1.getTime();
 		});
 		const top5Matches = teamMatches.slice(0, 5);
-		// Chuan bi them field vao object match nen phai deepcopy.
 		const renderedMatches = _.cloneDeep(top5Matches);
 
-		renderedMatches.forEach( match => {
-			if(match.local === teamName) {
-				match['finalResult'] = match.result;
+		renderedMatches.forEach((match) => {
+			if (match.local === teamName) {
+				match["finalResult"] = match.result;
 			} else {
-				switch(match.result){
-					case 'L':
+				switch (match.result) {
+					case "L":
 						match["finalResult"] = "W";
 						break;
-					case 'W':
+					case "W":
 						match["finalResult"] = "L";
 						break;
 					default:
@@ -103,29 +73,28 @@ const LeagueTable = () => {
 						break;
 				}
 			}
-			switch(match.finalResult){
-				case 'W':
-					match['cssClass'] = 'win';
+			switch (match.finalResult) {
+				case "W":
+					match["cssClass"] = "win";
 					break;
-				case 'L':
-					match['cssClass'] = 'lose';
+				case "L":
+					match["cssClass"] = "lose";
 					break;
-				case 'D':
-					match['cssClass'] = 'draw';
+				case "D":
+					match["cssClass"] = "draw";
 					break;
 			}
-		})
-
-
+		});
 		return (
 			<>
 				{renderedMatches.map((match, index) => (
-						<span key={index} className={`ratings ${match.cssClass}`}>{match.finalResult}</span>
+					<span key={index} className={`ratings ${match.cssClass}`}>
+						{match.finalResult}
+					</span>
 				))}
 			</>
 		);
-
-	}
+	};
 
 	const showTeamPosition = () =>
 		positions
