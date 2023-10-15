@@ -1,5 +1,5 @@
 import {
-  Button,
+	Button,
 	Table,
 	TableBody,
 	TableCell,
@@ -13,15 +13,9 @@ import LoadMore from "../common/LoadMore";
 import axios from "axios";
 import { showErrorToast } from "./tools";
 
-
-// const intitValues = {
-// 	items: [],
-// 	lastVisible: 2,
-//   error: false
-// };
 const LeagueTable = () => {
 	const [positions, setPosition] = useState([]);
-  const [lastVisible, setLastVisible] = useState(4);
+	const [lastVisible, setLastVisible] = useState(4);
 
 	const [value, setValue] = useState([]);
 	const [loading, setLoading] = useState(false);
@@ -29,8 +23,8 @@ const LeagueTable = () => {
 	useEffect(() => {
 		const fetchPosition = async () => {
 			let res = await axios.get("http://localhost:8000/api/position"); // Gọi API lấy danh sách position
-			
-      // setValue(res)
+
+			// setValue(res)
 			const positionList = res.data;
 			// Với mỗi Position của 1 đội bóng, gọi API để lấy danh sách 5 trận gần nhất.
 			for (const pos of positionList) {
@@ -89,17 +83,13 @@ const LeagueTable = () => {
 
 	//loadmore
 	const loadMore = () => {
-		// value = value.lastVisible + 4
-   // console.log(positions)
-    if (lastVisible < positions.length){
-      setLastVisible(lastVisible + 3);
-    }else{
-      showErrorToast("Không còn gì để tải.")
-    }
-		
+		if (lastVisible < positions.length) {
+			setLastVisible(lastVisible + 3);
+		} else {
+			showErrorToast("Không còn gì để tải.");
+		}
 	};
 
-  console.log(value);
 	const showTeamPosition = () =>
 		positions
 			? positions.slice(0, lastVisible).map((pos, i) => (
