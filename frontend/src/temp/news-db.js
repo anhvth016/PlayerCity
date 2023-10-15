@@ -138,6 +138,22 @@ const NewsDb = {
 				"MU thắng tưng bừng: Mount chỉ đá 45 phút bị thay ra, tình hình ra sao?",
 			newsThmb: "../resources/images/test/mu.png",
 		},
+		{
+			id: "5",
+			published_date: Date.now() + 1000, // millsecond
+			title: "Manchester United",
+			description:
+				"MU thắng tưng bừng: Mount chỉ đá 45 phút bị thay ra, tình hình ra sao?",
+			newsThmb: "../resources/images/test/mu.png",
+		},
+		{
+			id: "6",
+			published_date: Date.now() + 1000, // millsecond
+			title: "Manchester United",
+			description:
+				"MU thắng tưng bừng: Mount chỉ đá 45 phút bị thay ra, tình hình ra sao?",
+			newsThmb: "../resources/images/test/mu.png",
+		},
 	],
 
 	playedStartDetails: [
