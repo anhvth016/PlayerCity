@@ -13,12 +13,14 @@ const Star = () => {
 	useEffect(() => {
 		getPlayedStart()
 			.then((response) => {
-				setPlayed(response);
+				setPlayed(response.slice(0, 5));
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	}, []);
+
+	console.log(played);
 
 	let date = null;
 	if (played) {
