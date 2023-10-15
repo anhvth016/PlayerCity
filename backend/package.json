@@ -8,7 +8,7 @@
     "build": "tsc",
     "start:server": "cross-env NODE_ENV=production node ./dist/server.js",
     "dev:server_debug": "cross-env NODE_ENV=development concurrently \"npx tsc --watch -p .\" \"set DEBUG=express:* & nodemon -q ./dist/server.js\"",
-    "dev:server": "cross-env NODE_ENV=development concurrently \"npx tsc --watch -p .\" \"nodemon -q ./dist/server.js\"",
+    "start": "cross-env NODE_ENV=development concurrently \"npx tsc --watch -p .\" \"nodemon -q ./dist/server.js\"",
     "seed:truncate": "npm run build && cross-env NODE_ENV=development node -d ./dist/database/seeder.js",
     "seed": "npm run build && cross-env NODE_ENV=development node ./dist/database/seeder.js",
     "format": "cross-env NODE_ENV=development npm run format --prefix ../frontend"
