@@ -2,8 +2,8 @@ version: "3.8"
 
 services:
   frontend:
-    container_name: player_city_fe
-    image: player_city_fe:latest
+    container_name: player-city-fe
+    image: player-city-fe:latest
     tty: true
     build:
       context: ./frontend
@@ -12,8 +12,8 @@ services:
     networks:
       - pol-network
   backend:
-    container_name: player_city_be
-    image: player_city_be:latest
+    container_name: player-city-be
+    image: player-city-be:latest
     tty: true
     build:
       context: ./backend
@@ -23,8 +23,8 @@ services:
       - pol-network
 
   nginx:
-    container_name: pol-store-nginx
-    image: pol-store-nginx:latest
+    container_name: player-city-nginx
+    image: player-city-nginx:latest
     tty: true
     restart: always
     build:
