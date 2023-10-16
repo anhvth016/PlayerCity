@@ -8,7 +8,7 @@ services:
     build:
       context: ./frontend
     ports:
-      - 9999:80
+      - 3002:80
     networks:
       - pol-network
   be:
@@ -18,9 +18,24 @@ services:
     build:
       context: ./backend
     ports:
-      - 9998:8000
+      - 8002:8000
     networks:
       - pol-network
+
+  nginx:
+    container_name: pol-store-nginx
+    image: pol-store-nginx:latest
+    tty: true
+    restart: always
+    build:
+      context: ./nginx
+    networks:
+      - pol-network
+    ports:
+      - 8082:80
+    depends_on:
+      - backend
+      - frontend
 
 networks:
   pol-network:
