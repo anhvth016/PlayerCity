@@ -1,7 +1,7 @@
 version: "3.8"
 
 services:
-  fe:
+  frontend:
     container_name: player_city_fe
     image: player_city_fe:latest
     tty: true
@@ -11,7 +11,7 @@ services:
       - 3002:80
     networks:
       - pol-network
-  be:
+  backend:
     container_name: player_city_be
     image: player_city_be:latest
     tty: true
