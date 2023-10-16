@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  fe:
+    container_name: player_city_fe
+    image: player_city_fe:latest
+    tty: true
+    build:
+      context: ./frontend
+    ports:
+      - 9999:80
+    networks:
+      - pol-network
+  be:
+    container_name: player_city_be
+    image: player_city_be:latest
+    tty: true
+    build:
+      context: ./backend
+    ports:
+      - 9998:8000
+    networks:
+      - pol-network
+
+networks:
+  pol-network:
+    driver: bridge

@@ -11,13 +11,13 @@ const DisplayNews = () => {
   const handleClick = () => {
     if (newsId) {
       // T/H có nhập ID bài báo thì Gọi API lấy 1 bài báo theo ID đã nhập
-      axios.get(`http://localhost:8000/api/news/${newsId}`).then((res) => {
+      axios.get(`${process.env.REACT_APP_API_URL}/news/${newsId}`).then((res) => {
         console.log(res);
         setNewsContent(res.data?.detail?.content);
       });
     } else {
       // T/H k nhập ID bài báo thì Gọi API lấy toàn bộ danh sách bài báo r hiển thị bài báo đầu tiên
-      axios.get(`http://localhost:8000/api/news/`).then((res) => {
+      axios.get(`${process.env.REACT_APP_API_URL}/news/`).then((res) => {
         console.log(res);
         setNewsContent(res.data[0]?.detail?.content);
       });

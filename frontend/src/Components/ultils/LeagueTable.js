@@ -22,14 +22,14 @@ const LeagueTable = () => {
 
 	useEffect(() => {
 		const fetchPosition = async () => {
-			let res = await axios.get("http://localhost:8000/api/position"); // Gọi API lấy danh sách position
+			let res = await axios.get(`${process.env.REACT_APP_API_URL}/position`); // Gọi API lấy danh sách position
 
 			// setValue(res)
 			const positionList = res.data;
 			// Với mỗi Position của 1 đội bóng, gọi API để lấy danh sách 5 trận gần nhất.
 			for (const pos of positionList) {
 				res = await axios.get(
-					`http://localhost:8000/api/matches/${pos.team._id}`
+					`${process.env.REACT_APP_API_URL}/matches/${pos.team._id}`
 				);
 				pos["recentMatches"] = res.data; // Add vào object position
 			}

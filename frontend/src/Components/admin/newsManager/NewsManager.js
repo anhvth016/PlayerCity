@@ -7,6 +7,7 @@ import "react-quill/dist/quill.snow.css";
 import "./newsManager.css";
 import DisplayNews from "./DisplayNews";
 import AdminLayout from "../../../Hoc/adminLayout/AdminLayout";
+import { showErrorToast, showSuccessToast } from "../../ultils/tools";
 
 const NewsManager = () => {
   const quillRef = useRef(null);
@@ -24,10 +25,10 @@ const NewsManager = () => {
       },
     };
     // GOI API DE LUU NEWS
-    axios.post(`http://localhost:8000/api/news`, news).then((res) => {
-      console.log(res);
+    axios.post(`${process.env.REACT_APP_API_URL}/news`, news).then((res) => {
       console.log(res.data);
-    });
+      showSuccessToast('Lưu thành công');
+    }, err => showErrorToast('Lưu thất bại'));
   };
 
   useEffect(() => {}, []);
@@ -123,7 +124,7 @@ const NewsManager = () => {
 					</div>
 				</form>
 			</div>
-			<DisplayNews />
+			{/* <DisplayNews /> */}
 		</AdminLayout>
 	);
 };
