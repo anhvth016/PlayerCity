@@ -16,7 +16,7 @@ const StarPlayers = () => {
 						borderBottom="1px solid rgb(227, 227, 227)"
 					>
 						<div style={{ fontWeight: "700", padding: "5px 0" }}>
-							Ngôi sao thể thao11111111
+							Ngôi sao thể thao
 						</div>
 					</TagMatches>
 				</div>

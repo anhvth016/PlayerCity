@@ -7,52 +7,51 @@ import moment from "moment";
 import "moment/locale/vi";
 import parse from "html-react-parser";
 import RelatedNews from "../news/detail-news/RelatedNews";
-
+import axios from "axios";
+import { Markup } from "interweave";
 
 const StarDetail = () => {
-	const [starDetail, setStarDetail] = useState(null);
-	const { id } = useParams();
+  const [starDetail, setStarDetail] = useState(null);
+  const { id } = useParams();
 
-	useEffect(() => {
-		getPlayedId(id)
-			.then((response) => {
-				setStarDetail(response);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	});
+  useEffect(() => {
+    if (id) {
+      axios.get(`${process.env.REACT_APP_API_URL}/news/${id}`).then((res) => {
+        console.log(res);
+        setStarDetail(res.data);
+      });
+    }
+  }, [id]);
 
-	let date = null;
-	if (starDetail) {
-		date = moment(starDetail.published_date);
-		date.locale("vi");
-	}
-
-	return (
-		<>
-			<div className="home_details_wrapper ">
-				<div className="container">
-					<div className="home_wrapper">
-						{starDetail && (
-							<div className="details_wrapper">
-								<div className="header_breadcrumb">
-									<BreadCrumb />
-									<span className="date">
-										{date.format("dddd, DD/MM/YYYY, hh:mm")} (GMT + 7)
-									</span>
-								</div>
-								<div className="details_title">{starDetail.title}</div>
-								<div className="description">
-									{parse(starDetail.description)}
-								</div>
-							</div>
-						)}
-						<RelatedNews />
-					</div>
-				</div>
-			</div>
-		</>
-	);
+  return (
+    <>
+      <div className="home_details_wrapper ">
+        <div className="container">
+          <div className="home_wrapper">
+            {starDetail && (
+              <>
+                <div className="details_wrapper">
+                  <div className="header_breadcrumb">
+                    <BreadCrumb />
+                    <span className="date">
+                      {starDetail.publishedDate} (GMT + 7)
+                    </span>
+                  </div>
+                  <div className="details_title">{starDetail.title}</div>
+                  <div className="description">
+                    {parse(starDetail.description)}
+                  </div>
+                </div>
+                <div className="content_wrapper">
+                  {starDetail.detail?.content && <Markup content={starDetail.detail?.content} />}
+                </div>
+              </>
+            )}
+            <RelatedNews />
+          </div>
+        </div>
+      </div>
+    </>
+  );
 };
 export default StarDetail;

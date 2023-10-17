@@ -13,6 +13,9 @@ const NewsManager = () => {
   const quillRef = useRef(null);
   const [editorData, setEditorData] = useState("");
   const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [thumbnail, setThumbnail] = useState("");
+  const [publishedDate, setPublishedDate] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,15 +23,21 @@ const NewsManager = () => {
 
     const news = {
       title,
+      description,
+      thumbnail,
+      publishedDate,
       detail: {
         content: editorData,
       },
     };
     // GOI API DE LUU NEWS
-    axios.post(`${process.env.REACT_APP_API_URL}/news`, news).then((res) => {
-      console.log(res.data);
-      showSuccessToast('Lưu thành công');
-    }, err => showErrorToast('Lưu thất bại'));
+    axios.post(`${process.env.REACT_APP_API_URL}/news`, news).then(
+      (res) => {
+        console.log(res.data);
+        showSuccessToast("Lưu thành công");
+      },
+      (err) => showErrorToast("Lưu thất bại")
+    );
   };
 
   useEffect(() => {}, []);
@@ -77,56 +86,72 @@ const NewsManager = () => {
   ];
 
   return (
-		<AdminLayout title="Tin tức thể thao">
-			<div className="news_manager">
-				<form onSubmit={handleSubmit}>
-					{/* <input
-        type="text"
-        placeholder="Tiêu đề bài báo"
-        value={title}
-        onChange={(e) => setTitle(e.target.value)}
-      /> */}
-					<TextField
-						id="name"
-						name="name"
-						label="Tiêu đề bài báo"
-						variant="filled"
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-					/>
+    <AdminLayout title="Tin tức thể thao">
+      <div className="news_manager">
+        <form onSubmit={handleSubmit}>
+          <TextField
+            id="name"
+            name="name"
+            label="Tiêu đề bài báo"
+            variant="filled"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
 
-					{/* <TextField
-						id="name"
-						name="name"
-						variant="outlined"
-						placeholder="Tiêu đề bài báo"
-						value={title}
-						onChange={(e) => setTitle(e.target.value)}
-					/> */}
-					<div className="editor_container">
-						<div className="content">Nội dung</div>
-						<ReactQuill
-							modules={modules}
-							formats={formats}
-							theme="snow"
-							value={editorData}
-							onChange={setEditorData}
-							style={{ height: "100%" }}
-						/>
-						<Button
-							type="submit"
-							variant="contained"
-							color="primary"
-              style={{marginTop: '10px'}}
-						>
-							Lưu
-						</Button>
-					</div>
-				</form>
-			</div>
-			{/* <DisplayNews /> */}
-		</AdminLayout>
-	);
+          <TextField
+            id="description"
+            name="description"
+            label="Mô tả ngắn"
+            variant="filled"
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+          />
+
+          <TextField
+            id="thumbnail"
+            name="thumbnail"
+            label="Link ảnh thumbnail"
+            variant="filled"
+            value={thumbnail}
+            onChange={(e) => setThumbnail(e.target.value)}
+          />
+
+          <TextField
+            id="date"
+            label="Ngày đăng"
+            type="date"
+            defaultValue="2023-10-13"
+            // className={classes.textField}
+            InputLabelProps={{
+              shrink: true,
+            }}
+            onChange={(e) => setPublishedDate(e.target.value)}
+          />
+
+          <div className="editor_container">
+            <div className="content">Nội dung</div>
+            <ReactQuill
+              modules={modules}
+              formats={formats}
+              theme="snow"
+              value={editorData}
+              onChange={setEditorData}
+              style={{ height: "100%" }}
+            />
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              style={{ marginTop: "10px" }}
+            >
+              Lưu
+            </Button>
+          </div>
+        </form>
+      </div>
+      {/* <DisplayNews /> */}
+    </AdminLayout>
+  );
 };
 
 export default NewsManager;

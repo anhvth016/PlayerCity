@@ -81,11 +81,11 @@ const TeamSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 const NewsSchema = new mongoose.Schema({
-    published_date: {
-        type: Number,
+    publishedDate: {
+        type: String,
         require: true
     },
-    football_tournament: {
+    footballTournament: {
         type: String,
         require: false
     },

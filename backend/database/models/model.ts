@@ -3,7 +3,7 @@ import mongoose, { Document, mongo } from 'mongoose';
 
 export interface INews {
     _id?: string;
-    publishedDate?: number;
+    publishedDate?: string;
     footballTournament?: string | null; // Dùng để phân loại bài báo
     title?: string | null;
     description?: string | null;
@@ -135,11 +135,11 @@ const TeamSchema = new mongoose.Schema(
 
 const NewsSchema = new mongoose.Schema(
     {
-        published_date: {
-            type: Number,
+        publishedDate: {
+            type: String,
             require: true
         },
-        football_tournament: {
+        footballTournament: {
             type: String,
             require: false
         },
