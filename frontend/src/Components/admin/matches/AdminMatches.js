@@ -1,17 +1,25 @@
-import React, {useEffect, useState} from "react";
+import React, { useEffect, useState } from "react";
 import { matchesCollection } from "../../../firebase";
-import { CircularProgress, Button, TableCell, TableRow, TableBody, TableHead, Table, Paper } from "@material-ui/core";
-import { showErrorToast } from "../../ultils/tools";
+import {
+	CircularProgress,
+	Button,
+	TableCell,
+	TableRow,
+	TableBody,
+	TableHead,
+	Table,
+	Paper,
+} from "@material-ui/core";
+import { showErrorToast, showSuccessToast } from "../../ultils/tools";
 import { Link } from "react-router-dom";
 import AdminLayout from "../../../Hoc/adminLayout/AdminLayout";
 
 const AdminMatches = () => {
-  const [matches, setMatches] = useState(null);
-  const [loading, setLoading] = useState(false)
-  const [lastVisible, setLastVisible] = useState(null);
+	const [matches, setMatches] = useState(null);
+	const [loading, setLoading] = useState(false);
+	const [lastVisible, setLastVisible] = useState(null);
 
-
-  useEffect(() => {
+	useEffect(() => {
 		if (!matches) {
 			setLoading(true);
 			matchesCollection
@@ -35,7 +43,7 @@ const AdminMatches = () => {
 		}
 	}, [matches]);
 
-  const loadMoreMatches = () => {
+	const loadMoreMatches = () => {
 		if (lastVisible) {
 			setLoading(true);
 			matchesCollection
@@ -61,7 +69,21 @@ const AdminMatches = () => {
 			showErrorToast("Không còn gì để tải.");
 		}
 	};
-  return (
+
+	const handleRemove = (id) => {
+		if (id) {
+			matchesCollection
+				.doc(id)
+				.delete()
+				.then((snapshot) => {
+					setMatches(snapshot);
+					showSuccessToast("Xoá trận đấu thành công.")
+				}).catch((error) => {
+					showErrorToast("Xoá trận đấu thất bại.")
+				});
+		}
+	};
+	return (
 		<AdminLayout title="Các trận đấu">
 			<div className="mb-5">
 				<Button
@@ -70,7 +92,7 @@ const AdminMatches = () => {
 					component={Link}
 					to={"/admin-matches/add-match"}
 				>
-					Add match
+					Thêm trận đấu
 				</Button>
 			</div>
 
@@ -78,33 +100,47 @@ const AdminMatches = () => {
 				<Table>
 					<TableHead>
 						<TableRow>
-							<TableCell>Date</TableCell>
-							<TableCell>Match</TableCell>
-							<TableCell>Result</TableCell>
-							<TableCell>Final</TableCell>
+							<TableCell>Ngày đấu</TableCell>
+							<TableCell>Trận đấu giữa hai đội</TableCell>
+							<TableCell>Kết quả</TableCell>
+							<TableCell>Sân vận động</TableCell>
+							<TableCell></TableCell>
 						</TableRow>
 					</TableHead>
 					<TableBody>
 						{matches
-							? matches.map((match, i) => (
+							? matches.map((match) => (
 									<TableRow key={match.id}>
 										<TableCell>{match.date}</TableCell>
 										<TableCell>
-											<Link to={`/admin-matches/edit-match/${match.id}`}>
-												{match.away} <strong>-</strong> {match.local}
-											</Link>
+											{match.away} <strong>-</strong> {match.local}
 										</TableCell>
 										<TableCell>
 											{match.resultAway} <strong>-</strong> {match.resultLocal}
 										</TableCell>
 										<TableCell>
-											{match.final === "Yes" ? (
-												<span className="matches_tag_red">Final</span>
-											) : (
-												<span className="matches_tag_green">
-													Not played yet
-												</span>
-											)}
+											{match.stadium}
+										</TableCell>
+										<TableCell>
+											<Link to={`/admin-matches/edit-match/${match.id}`}>
+												<Button
+													style={{
+														backgroundColor: "#eee",
+														marginRight: "10px",
+													}}
+												>
+													Sửa
+												</Button>
+											</Link>
+											<Button
+												style={{
+													backgroundColor: "red",
+													color: "#ffff",
+												}}
+												onClick={() => handleRemove(match.id)}
+											>
+												Xoá
+											</Button>
 										</TableCell>
 									</TableRow>
 							  ))
@@ -119,7 +155,7 @@ const AdminMatches = () => {
 				onClick={() => loadMoreMatches()}
 				disabled={loading}
 			>
-				Load more
+				Xem thêm
 			</Button>
 
 			<div className="admin_progress">
@@ -129,5 +165,5 @@ const AdminMatches = () => {
 			</div>
 		</AdminLayout>
 	);
-}
+};
 export default AdminMatches;

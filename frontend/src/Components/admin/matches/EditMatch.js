@@ -85,6 +85,7 @@ const EditMatch = (props) => {
 			.update(data)
 			.then(() => {
 				showSuccessToast("Trận đấu được sửa thành công.");
+				props.history.push("/admin-matches");
 			})
 			.catch((error) => {
 				showErrorToast("Sửa trận đấu thất bại", error);
@@ -128,16 +129,11 @@ const EditMatch = (props) => {
 				.get()
 				.then((snapshot) => {
 					if (snapshot.data()) {
-						setFormType("edit");
 						setValues(snapshot.data());
 					} else {
 						showErrorToast("No records found");
 					}
 				});
-		} else {
-			// add
-			setFormType("add");
-			setValues(defaultValues);
 		}
 	}, [props.match.params.matchid]);
 
@@ -163,7 +159,7 @@ const EditMatch = (props) => {
 						<hr />
 
 						<div>
-							<h4>Result local</h4>
+							<h4>Thi đấu trên sân nhà</h4>
 							<FormControl error={selectIsError(formik, "local")}>
 								<Select
 									id="local"
@@ -173,7 +169,7 @@ const EditMatch = (props) => {
 									{...formik.getFieldProps("local")}
 								>
 									<MenuItem value="" disabled>
-										Select a team
+										Chọn đội bóng
 									</MenuItem>
 									{showTeams()}
 								</Select>
@@ -193,7 +189,7 @@ const EditMatch = (props) => {
 						</div>
 
 						<div>
-							<h4>Result away</h4>
+							<h4>Thi đấu trên sân khách</h4>
 							<FormControl error={selectIsError(formik, "away")}>
 								<Select
 									id="away"
@@ -203,7 +199,7 @@ const EditMatch = (props) => {
 									{...formik.getFieldProps("away")}
 								>
 									<MenuItem value="" disabled>
-										Select a team
+										Chọn đội bóng
 									</MenuItem>
 									{showTeams()}
 								</Select>

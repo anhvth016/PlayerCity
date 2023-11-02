@@ -35,7 +35,6 @@ const defaultValues = {
 
 const AddMatch = (props) => {
 	const [loading, setLoading] = useState(false);
-	const [formType, setFormType] = useState("");
 	const [teams, setTeams] = useState(null);
 	const [values, setValues] = useState(defaultValues);
 
@@ -65,13 +64,12 @@ const AddMatch = (props) => {
 		}),
 		onSubmit: (values) => {
 			// submit form
-			submitForm(values)
+			submitForm(values);
 		},
 	});
 
 	const submitForm = (values) => {
 		const data = values;
-		console.log(teams);
 		teams.forEach((team) => {
 			if (team.shortName === data.local) {
 				data["localThmb"] = team.thmb;
@@ -80,15 +78,21 @@ const AddMatch = (props) => {
 				data["awayThmb"] = team.thmb;
 			}
 		});
-		matchesCollection.add(values).then(() => {
-			showSuccessToast('Thêm trận đấu thành công.')
-			formik.resetForm();
-		}).catch(error => {
-			showErrorToast('Không thể thêm trận đấu', error)
-		}).finally(() => {
-			setLoading(true)
-		})
-	}
+		matchesCollection
+			.add(values)
+			.then(() => {
+				showSuccessToast("Thêm trận đấu thành công.");
+				formik.resetForm();
+				props.history.push("/admin-matches");
+
+			})
+			.catch((error) => {
+				showErrorToast("Không thể thêm trận đấu", error);
+			})
+			.finally(() => {
+				setLoading(true);
+			});
+	};
 	const showTeams = () =>
 		teams
 			? teams.map((item) => (
@@ -115,28 +119,6 @@ const AddMatch = (props) => {
 		}
 	}, [teams]);
 
-	useEffect(() => {
-		const param = props.match.params.matchid;
-		if (param) {
-			/// edit
-			matchesCollection
-				.doc(param)
-				.get()
-				.then((snapshot) => {
-					if (snapshot.data()) {
-						setFormType("edit");
-						setValues(snapshot.data());
-					} else {
-						showErrorToast("No records found");
-					}
-				});
-		} else {
-			// add
-			setFormType("add");
-			setValues(defaultValues);
-		}
-	}, [props.match.params.matchid]);
-
 	return (
 		<AdminLayout title="Trận đấu">
 			<div className="editmatch_dialog_wrapper">
@@ -159,7 +141,7 @@ const AddMatch = (props) => {
 						<hr />
 
 						<div>
-							<h4>Result local</h4>
+							<h4>Thi đấu trên sân nhà</h4>
 							<FormControl error={selectIsError(formik, "local")}>
 								<Select
 									id="local"
@@ -169,7 +151,7 @@ const AddMatch = (props) => {
 									{...formik.getFieldProps("local")}
 								>
 									<MenuItem value="" disabled>
-										Select a team
+										Chọn đội bóng
 									</MenuItem>
 									{showTeams()}
 								</Select>
@@ -189,7 +171,7 @@ const AddMatch = (props) => {
 						</div>
 
 						<div>
-							<h4>Result away</h4>
+							<h4>Thi đấu trên sân khách</h4>
 							<FormControl error={selectIsError(formik, "away")}>
 								<Select
 									id="away"
@@ -199,7 +181,7 @@ const AddMatch = (props) => {
 									{...formik.getFieldProps("away")}
 								>
 									<MenuItem value="" disabled>
-										Select a team
+										Chọn đội bóng
 									</MenuItem>
 									{showTeams()}
 								</Select>
@@ -234,8 +216,8 @@ const AddMatch = (props) => {
 										<MenuItem value="" disabled>
 											Trận đấu đã bắt đầu ?
 										</MenuItem>
-										<MenuItem value="yes">Yes</MenuItem>
-										<MenuItem value="no">No</MenuItem>
+										<MenuItem value="yes">Đã chơi</MenuItem>
+										<MenuItem value="no">Chưa chơi</MenuItem>
 									</Select>
 									{selectErrorHelper(formik, "final")}
 								</FormControl>
@@ -291,7 +273,7 @@ const AddMatch = (props) => {
 								color="primary"
 								disabled={loading}
 							>
-								Add Match
+								Thêm trận đấu
 							</Button>
 						</div>
 					</form>
